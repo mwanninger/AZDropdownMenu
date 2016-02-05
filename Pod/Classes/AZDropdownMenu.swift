@@ -159,7 +159,7 @@ public class AZDropdownMenu: UIView {
         self.accessibilityIdentifier = "AZDropdownMenu"
         self.backgroundColor = UIColor.clearColor()
         self.alpha = 0.95
-        self.translatesAutoresizingMaskIntoConstraints = false
+        self.translatesAutoresizingMaskIntoConstraints = true
         initOverlay()
         initMenu()
     }
@@ -172,7 +172,7 @@ public class AZDropdownMenu: UIView {
         self.accessibilityIdentifier = "AZDropdownMenu"
         self.backgroundColor = UIColor.clearColor()
         self.alpha = 0.95;
-        self.translatesAutoresizingMaskIntoConstraints = false
+        self.translatesAutoresizingMaskIntoConstraints = true
         initOverlay()
         initMenu()
     }
@@ -253,7 +253,8 @@ public class AZDropdownMenu: UIView {
     - parameter view: The view to be attached by the menu, ex. the controller's view
     */
     public func showMenuFromView(view:UIView){
-        
+        removeConstraints(constraints)
+        self.frame = CGRectMake(0,-1200,view.frame.width,view.frame.height);
         view.addSubview(self)
         
         animateOvelay(overlayAlpha, interval: 0.4, completionHandler: nil)
@@ -265,7 +266,7 @@ public class AZDropdownMenu: UIView {
             initialSpringVelocity: 0.6,
             options:[],
             animations:{
-                self.frame.origin.y = view.frame.origin.y
+                self.frame.origin.y = 0
                 } , completion:{ (finished : Bool) -> Void in
 
             }
